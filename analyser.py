@@ -27,8 +27,7 @@ print("Total successful attempts", success_count)
 print("Failed attempts per IP address:")
 
 for ip, count in failed_by_ip.items():
-    print(ip, ":", count)
     if count >= failed_threshold:
-        print("[WARNING] 192.168.1.10: 5 failed attempts (threshold: 5)")
+        print(f"[WARNING] {ip}: {count} failed attempts (threshold: {failed_threshold})")
     else:
-        print("[INFO] Failed attempts below detection threshold")
+        print(f"[INFO] {ip}: {count} failed attempts (threshold: {failed_threshold})")
