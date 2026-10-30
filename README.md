@@ -7,9 +7,10 @@ A Python-based cybersecurity project that analyses authentication logs to identi
 - Reads authentication records from a sample CSV file
 - Counts failed login attempts
 - Counts successful login attempts
+- Track failed login attempts by IP address
+- Reads CSV files using csv.DictReader
 
 ## Planned Features
-- Track failed login attempts by IP address
 - Detect repeated failed logins using configurable thresholds
 - Generate CSV security reports
 
