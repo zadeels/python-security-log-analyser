@@ -6,9 +6,9 @@ A Python-based cybersecurity project that analyses authentication logs to identi
 ## Current Features
 - Reads authentication records from a sample CSV file
 - Counts failed login attempts
+- Counts successful login attempts
 
 ## Planned Features
-- Count successful login attempts
 - Track failed login attempts by IP address
 - Detect repeated failed logins using configurable thresholds
 - Generate CSV security reports
