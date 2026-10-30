@@ -12,6 +12,8 @@ A Python-based cybersecurity project that analyses authentication logs to identi
 - Detects IP addresses that reach or exceed a configurable failed-login threshold
 - Displays warning and informational messages for authentication activity.
 - Allows users to specify their own CSV authentication log files.
+- Handles missing authentication log files using Python exception handling.
+- Displays clear error messages when a file cannot be found.
 
 ## Planned Features
 - Generate CSV security reports
