@@ -9,9 +9,10 @@ A Python-based cybersecurity project that analyses authentication logs to identi
 - Counts successful login attempts
 - Track failed login attempts by IP address
 - Reads CSV files using csv.DictReader
+- Detects IP addresses that reach or exceed a configurable failed-login threshold
+- Displays warnings for potentially suspicious authentication activity
 
 ## Planned Features
-- Detect repeated failed logins using configurable thresholds
 - Generate CSV security reports
 
 ## Technologies

@@ -6,6 +6,7 @@ print(".....................")
 failed_count = 0
 success_count = 0
 failed_by_ip = {}
+failed_threshold = 5
 
 with open("sample_logs/auth_log.csv", "r", newline="") as file:
     reader = csv.DictReader(file)
@@ -27,3 +28,7 @@ print("Failed attempts per IP address:")
 
 for ip, count in failed_by_ip.items():
     print(ip, ":", count)
+    if count >= failed_threshold:
+        print("[WARNING] 192.168.1.10: 5 failed attempts (threshold: 5)")
+    else:
+        print("[INFO] Failed attempts below detection threshold")
