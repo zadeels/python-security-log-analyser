@@ -8,7 +8,10 @@ success_count = 0
 failed_by_ip = {}
 failed_threshold = 5
 
-with open("sample_logs/auth_log.csv", "r", newline="") as file:
+file_path = input("Enter your CSV file path: ")
+
+
+with open(file_path, "r", newline="") as file:
     reader = csv.DictReader(file)
 
     for row in reader:
