@@ -14,6 +14,12 @@ try:
     with open(file_path, "r", newline="") as file:
         reader = csv.DictReader(file)
 
+        required_columns = {"timestamp", "ip_address", "username", "status"}
+        actual_columns = set(reader.fieldnames or [])
+        missing_columns = required_columns - actual_columns
+
+        if len(missing_columns) > 0:
+            raise ValueError(f"Missing required columns: {', '.join(sorted(missing_columns))}")
         for row in reader:
             if row["status"] == "FAILED":
                 failed_count += 1
@@ -27,6 +33,8 @@ except FileNotFoundError:
     print(f"[ERROR] File not found: {file_path}")
     print("Please check the path and try again.")
 
+except ValueError as error:
+    print(f"[ERROR] Invalid CSV format: {error}")
 
 else:
     print("Total failed attempts", failed_count)

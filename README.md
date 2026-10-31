@@ -14,6 +14,8 @@ A Python-based cybersecurity project that analyses authentication logs to identi
 - Allows users to specify their own CSV authentication log files.
 - Handles missing authentication log files using Python exception handling.
 - Displays clear error messages when a file cannot be found.
+- Validates CSV files for required column headers.
+- Displays descriptive error messages when required columns are missing.
 
 ## Planned Features
 - Generate CSV security reports

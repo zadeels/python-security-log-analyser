@@ -1,0 +1,4 @@
+timestamp,username,result
+2026-10-30 09:00:01,admin,FAILED
+2026-10-30 09:01:00,john,SUCCESS
+2026-10-30 09:02:00,admin,FAILED
