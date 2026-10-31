@@ -20,13 +20,18 @@ try:
 
         if len(missing_columns) > 0:
             raise ValueError(f"Missing required columns: {', '.join(sorted(missing_columns))}")
-        for row in reader:
-            if row["status"] == "FAILED":
+        for row_number, row in enumerate(reader, start=2):
+            status = (row["status"] or "").strip()
+            ip = (row["ip_address"] or "").strip()
+            if status not in {"SUCCESS", "FAILED"}:
+                raise ValueError(f"Invalid login status '{status}' on row {row_number}")
+            if not ip:
+                raise ValueError(f"IP address field empty on {row_number}")
+            if status == "FAILED":
                 failed_count += 1
-                ip = row["ip_address"]
                 failed_by_ip[ip] = failed_by_ip.get(ip, 0) + 1
 
-            elif row["status"] == "SUCCESS":
+            elif status == "SUCCESS":
                 success_count += 1
 
 except FileNotFoundError:
