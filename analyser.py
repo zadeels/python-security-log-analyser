@@ -1,5 +1,5 @@
 import csv
-from datetime import datetime
+from datetime import datetime, timedelta
 
 print("SECURITY LOG ANALYSER")
 print(".....................")
@@ -8,6 +8,8 @@ failed_count = 0
 success_count = 0
 failed_by_ip = {}
 failed_threshold = 5
+failed_times_by_ip = {}
+
 
 file_path = input("Enter your CSV file path: ")
 
@@ -31,7 +33,7 @@ try:
 
             except ValueError:
                 raise ValueError(f"Invalid timestamp '{timestamp}' on row {row_number}")
-                
+
             if status not in {"SUCCESS", "FAILED"}:
                 raise ValueError(f"Invalid login status '{status}' on row {row_number}")
             if not ip:
@@ -39,6 +41,11 @@ try:
             if status == "FAILED":
                 failed_count += 1
                 failed_by_ip[ip] = failed_by_ip.get(ip, 0) + 1
+
+                if ip not in failed_times_by_ip:
+                    failed_times_by_ip[ip] = []
+                    
+                failed_times_by_ip[ip].append(login_time)
 
             elif status == "SUCCESS":
                 success_count += 1
@@ -56,7 +63,19 @@ else:
     print("Failed attempts per IP address:")
 
     for ip, count in failed_by_ip.items():
-        if count >= failed_threshold:
-            print(f"[WARNING] {ip}: {count} failed attempts (threshold: {failed_threshold})")
+        for ip, count in failed_by_ip.items():
+            print(f"[INFO] {ip}: {count} total failed attempts")
         else:
             print(f"[INFO] {ip}: {count} failed attempts (threshold: {failed_threshold})")
+
+    for ip, times in failed_times_by_ip.items():
+        times.sort()
+
+        print(f"IP address: {ip}")
+        print(f"Failed login timestamps: {len(times)}")
+
+        if len(times) >= failed_threshold:
+            difference = times[failed_threshold - 1] - times[0]
+            print(f"Time between first {failed_threshold} failures: {difference}")
+            if difference <= timedelta(minutes=5):
+                print(f"[WARNING] {ip}: {failed_threshold} failed logins within 5 minutes")

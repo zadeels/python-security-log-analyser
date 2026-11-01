@@ -18,6 +18,9 @@ A Python-based cybersecurity project that analyses authentication logs to identi
 - Displays descriptive error messages when required columns are missing.
 - Validates authentication timestamps using Python's datetime module.
 - Reports invalid timestamp values and their corresponding CSV row numbers.
+- Validates authentication timestamps and identifies invalid date/time values.
+- Records failed login timestamps separately for each IP address.
+- Performs an initial five-minute detection check using the first five failed attempts per IP.
 
 ## Planned Features
 - Generate CSV security reports
