@@ -1,4 +1,5 @@
 import csv
+from datetime import datetime
 
 print("SECURITY LOG ANALYSER")
 print(".....................")
@@ -23,6 +24,14 @@ try:
         for row_number, row in enumerate(reader, start=2):
             status = (row["status"] or "").strip()
             ip = (row["ip_address"] or "").strip()
+            timestamp = (row["timestamp"] or "").strip()
+            
+            try:
+                login_time = datetime.strptime(timestamp, "%Y-%m-%d %H:%M:%S")
+
+            except ValueError:
+                raise ValueError(f"Invalid timestamp '{timestamp}' on row {row_number}")
+                
             if status not in {"SUCCESS", "FAILED"}:
                 raise ValueError(f"Invalid login status '{status}' on row {row_number}")
             if not ip:

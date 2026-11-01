@@ -16,6 +16,8 @@ A Python-based cybersecurity project that analyses authentication logs to identi
 - Displays clear error messages when a file cannot be found.
 - Validates CSV files for required column headers.
 - Displays descriptive error messages when required columns are missing.
+- Validates authentication timestamps using Python's datetime module.
+- Reports invalid timestamp values and their corresponding CSV row numbers.
 
 ## Planned Features
 - Generate CSV security reports
