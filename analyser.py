@@ -63,10 +63,7 @@ else:
     print("Failed attempts per IP address:")
 
     for ip, count in failed_by_ip.items():
-        for ip, count in failed_by_ip.items():
-            print(f"[INFO] {ip}: {count} total failed attempts")
-        else:
-            print(f"[INFO] {ip}: {count} failed attempts (threshold: {failed_threshold})")
+        print(f"[INFO] {ip}: {count} total failed attempts")
 
     for ip, times in failed_times_by_ip.items():
         times.sort()
@@ -75,7 +72,11 @@ else:
         print(f"Failed login timestamps: {len(times)}")
 
         if len(times) >= failed_threshold:
-            difference = times[failed_threshold - 1] - times[0]
-            print(f"Time between first {failed_threshold} failures: {difference}")
-            if difference <= timedelta(minutes=5):
-                print(f"[WARNING] {ip}: {failed_threshold} failed logins within 5 minutes")
+
+            for start in range(len(times) - failed_threshold + 1):
+
+                difference = times[start + failed_threshold - 1] - times[start]
+
+                if difference <= timedelta(minutes=5):
+                    print(f"[WARNING] {ip}: {failed_threshold} failed logins within 5 minutes")
+                    break
