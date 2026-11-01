@@ -25,9 +25,9 @@ A Python-based cybersecurity project that analyses authentication logs to identi
 - Tracks failed login timestamps separately for each IP address.
 - Uses rolling five-minute windows to detect potentially suspicious login activity.
 - Supports configurable failed-login detection thresholds.
+- Exports authentication analysis results to a CSV security report.
+- Includes failed login counts and time-based detection status for each IP address.
 
-## Planned Features
-- Generate CSV security reports
 
 ## Technologies
 - Python 3
