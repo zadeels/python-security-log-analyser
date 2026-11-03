@@ -20,13 +20,14 @@ A Python-based cybersecurity project that analyses authentication logs to identi
 - Reports invalid timestamp values and their corresponding CSV row numbers.
 - Validates authentication timestamps and identifies invalid date/time values.
 - Records failed login timestamps separately for each IP address.
-- Performs an initial five-minute detection check using the first five failed attempts per IP.
 - Validates authentication timestamps and reports invalid dates.
 - Tracks failed login timestamps separately for each IP address.
-- Uses rolling five-minute windows to detect potentially suspicious login activity.
+- Uses configurable rolling time windows to detect potential brute-force login attempts.
 - Supports configurable failed-login detection thresholds.
 - Exports authentication analysis results to a CSV security report.
 - Includes failed login counts and time-based detection status for each IP address.
+- Supports configurable detection time windows in minutes.
+- Uses reusable Python functions for CSV parsing, authentication analysis, suspicious IP detection, and report exporting.
 
 
 ## Technologies
